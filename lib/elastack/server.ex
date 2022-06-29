@@ -11,7 +11,8 @@ defmodule Elastack.Server do
   end
 
   def handle_call(:pop, _from, current_list) do
-    {:reply, current_list, Impl.pop(current_list)}
+    {head, new_current_list} = Impl.pop(current_list)
+    {:reply, head, new_current_list}
   end
 
   def handle_cast({:push, item}, current_list) do
