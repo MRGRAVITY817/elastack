@@ -22,4 +22,8 @@ defmodule Elastack.Server do
   def format_status(_reason, [_pdict, state]) do
     [data: [{'State', "My current state is '#{inspect(state)}', and I'm happy"}]]
   end
+
+  def terminate(reason, state) do
+    IO.puts("Reason: #{reason}, State: #{state}")
+  end
 end
