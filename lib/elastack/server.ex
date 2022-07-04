@@ -6,8 +6,11 @@ defmodule Elastack.Server do
   use GenServer
   alias Elastack.Impl
 
-  def init(initial_list) do
-    {:ok, initial_list}
+  @doc """
+  Start stack server with the initial(stashed) list.
+  """
+  def init(_) do
+    {:ok, Elastack.Stash.get()}
   end
 
   def handle_call(:pop, _from, current_list) do
@@ -23,7 +26,11 @@ defmodule Elastack.Server do
     [data: [{'State', "My current state is '#{inspect(state)}', and I'm happy"}]]
   end
 
+  @doc """
+  Revive the reproduced processes with the current state after the termination.
+  """
   def terminate(reason, state) do
     IO.puts("Reason: #{reason}, State: #{state}")
+    Elastack.Stash.update(state)
   end
 end

@@ -7,10 +7,16 @@ defmodule Elastack.Stash do
     GenServer.start_link(__MODULE__, init_list, name: @me)
   end
 
+  @doc """
+  Save the value in stash server.
+  """
   def get() do
     GenServer.call(@me, {:get})
   end
 
+  @doc """
+  Get the stashed value an update the reproduced processes.
+  """
   def update(new_list) do
     GenServer.cast(@me, {:update, new_list})
   end

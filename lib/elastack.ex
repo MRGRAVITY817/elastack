@@ -16,8 +16,8 @@ defmodule Elastack do
       :world
 
   """
-  def start_link(initial_list) do
-    GenServer.start_link(@server, initial_list, name: @server)
+  def start_link(_) do
+    GenServer.start_link(@server, nil, name: @server)
   end
 
   def pop do

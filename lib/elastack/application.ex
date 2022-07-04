@@ -3,7 +3,8 @@ defmodule Elastack.Application do
 
   def start(_type, _args) do
     children = [
-      {Elastack, [123, "hello"]}
+      {Elastack.Stash, [123, "hello"]},
+      {Elastack, nil}
     ]
 
     # `strategy:` defines how to revive processes when crashed
