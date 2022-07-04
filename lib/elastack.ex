@@ -5,6 +5,8 @@ defmodule Elastack do
 
   @server Elastack.Server
 
+  use Agent
+
   @doc """
   Create new stack server by providing initial initial list.
 
