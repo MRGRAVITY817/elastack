@@ -6,7 +6,10 @@ defmodule Elastack.Application do
       {Elastack, [123, "hello"]}
     ]
 
-    opts = [strategy: :one_for_one, name: Elastack.Supervisor]
+    # `strategy:` defines how to revive processes when crashed
+    # `:rest_for_one` will restart only the processes which has been
+    # spawned after the crashed process.
+    opts = [strategy: :rest_for_one, name: Elastack.Supervisor]
     Supervisor.start_link(children, opts)
   end
 end
